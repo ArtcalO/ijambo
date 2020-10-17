@@ -16,7 +16,26 @@ def register(request):
 		if form.is_valid:
 			form.save()
 			username = form.cleaned_data.get('username')
-			return redirect('ijambo-index')
+			return redirect('ijambo-login')
 	else:
 		form = UserRegisterForm()
 	return render(request, 'register.html', locals())
+
+def login(request):
+	login_form = loginForm(request.POST)
+
+	if request.method=='POST':
+		
+		if login_form.is_valid():
+			email = login_form.cleaned_data['email']
+			password = login_form.cleaned_data['password']
+			user = authenticate(email=email, password=password)
+
+			if user:
+				login(request, user)
+				return redirect('ijambo-index')
+			else:
+				login_form = loginForm()
+
+	login_form = loginForm()
+	return render(request, '', locals())
