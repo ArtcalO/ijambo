@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head> 
+<body>
+	
+	{% if album_form %}
+	<form method="post" action="{% url 'alb' %}" class="form-signin"enctype="multipart/form-data">
+
+	{% csrf_token %}
+
+    {{album_form.as_p}}
+    <input type="submit" value="Ajouter">	
+	</form>
+	{% endif %}
+
+	{% if chanson_form %}
+	<form method="post" action="{% url 'song' %}" class="form-signin"enctype="multipart/form-data">
+
+		{% csrf_token %}
+
+		{{chanson_form.as_p}}
+		<input type="submit" value="chanson">
+
+	</form>
+
+	{% endif %}
+
+</body>
+</html>

@@ -1,10 +1,26 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
+from . models import*
+from . forms import*
 # Create your views here.
 
-class HomeView(View):
-	template_name = 'index.html'
+def album(request):
+	album_form = AlbumForm(request.POST or None,request.FILES)
+	if(request.method =='POST'):
+		if(album_form.is_valid()):
+			album_form.save()
+	album_form = AlbumForm()
+	return render(request,"forms.html",locals())
 
-	def get(self, request, *args, **kwargs):
-		return render(request, self.template_name, locals())
+def chanson(request):
+	chanson_form = Chanson_du_mois(request.POST or None ,request.FILE)
+	if(request.method =='POST'):
+		if(chanson_form.is_valid()):
+			chanson_form.save()
+	chanson_form = Chanson_du_mois()
+	return render(request,"forms.html",locals())
+
+
+
+
