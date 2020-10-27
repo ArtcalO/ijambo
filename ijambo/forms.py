@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from . models import *
 class AlbumForm(forms.ModelForm):
 
 	titre=forms.CharField(
