@@ -13,8 +13,6 @@ class AlbumForm(forms.ModelForm):
 				}
 			))
 
-		
-
 	cover = forms.ImageField(
 		label = 'cover',
 		widget = forms.FileInput(

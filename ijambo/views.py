@@ -14,11 +14,11 @@ def album(request):
 	return render(request,"forms.html",locals())
 
 def chanson(request):
-	chanson_form = Chanson_du_mois(request.POST or None ,request.FILE)
+	chanson_form = Chanson_du_moisForm(request.POST or None ,request.FILES)
 	if(request.method =='POST'):
 		if(chanson_form.is_valid()):
 			chanson_form.save()
-	chanson_form = Chanson_du_mois()
+	chanson_form = Chanson_du_moisForm()
 	return render(request,"forms.html",locals())
 
 
